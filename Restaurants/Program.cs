@@ -1,4 +1,4 @@
-using Restaurants.Controllers;
+using Restaurants.Application.Extention;
 using Restaurants.Infrastructure.Extention;
 using Restaurants.Infrastructure.Seed;
 
@@ -16,10 +16,10 @@ namespace Restaurants
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            builder.Services.AddScoped<IWeatherForecastService, WeatherForecastService>();
 
 
             builder.Services.AddInfrastructureServices(builder.Configuration);
+            builder.Services.AddApplication();
 
             var app = builder.Build();
 

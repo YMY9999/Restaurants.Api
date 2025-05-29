@@ -3,7 +3,7 @@ using Restaurants.Domain.Entitys;
 
 namespace Restaurants.Infrastructure.DbContext
 {
-    internal class RestaurantsDbContext : Microsoft.EntityFrameworkCore.DbContext
+    public class RestaurantsDbContext : Microsoft.EntityFrameworkCore.DbContext
     {
         public RestaurantsDbContext(DbContextOptions<RestaurantsDbContext> options) : base(options)
         {
