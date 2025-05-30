@@ -10,11 +10,12 @@ namespace Restaurants.Infrastructure.Seed
             if (await dbContext.Database.CanConnectAsync())
             {
                 if (!dbContext.Restaurants.Any())
-                {
-                    var restaurants = GetRestaurants();
-                    dbContext.Restaurants.AddRange(restaurants);
-                    await dbContext.SaveChangesAsync();
-                }
+                    if (!dbContext.Restaurants.Any())
+                    {
+                        var restaurants = GetRestaurants();
+                        dbContext.Restaurants.AddRange(restaurants);
+                        await dbContext.SaveChangesAsync();
+                    }
             }
         }
 

@@ -21,8 +21,8 @@ namespace Restaurants.Api.Controllers
 
         }
 
-        [HttpGet("GetRestaurantByID")]
-        public async Task<IActionResult> GetRestaurantByID(int id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetRestaurantByID([FromRoute] int id)
         {
             var Restaurant = await _restaurantsService.GetRestaurantByID(id);
             if (Restaurant == null)
@@ -30,7 +30,6 @@ namespace Restaurants.Api.Controllers
                 return NotFound($"Restaurant with ID {id} not found.");
             }
             return Ok(Restaurant);
-
         }
 
     }
