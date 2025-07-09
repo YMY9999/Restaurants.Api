@@ -8,5 +8,7 @@ namespace Restaurants.Domain.Repository
         Task<Restaurant> GetRestaurantByIDAsync(int id);
         Task<int> CreateNewRestaurant(Restaurant restaurant);
 
+        Task DeleteRestaurant(Restaurant restaurant);
+
     }
 }

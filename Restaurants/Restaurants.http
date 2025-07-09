@@ -26,3 +26,5 @@ Content-Type: application/json
   "City": "monofia",
   "ZipCode": "77-111"
 }
+###
+Delete {{Restaurants_HostAddress}}/api/Restaurants/4
