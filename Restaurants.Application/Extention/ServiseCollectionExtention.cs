@@ -1,7 +1,10 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation;
+using FluentValidation.AspNetCore;
+using Microsoft.Extensions.DependencyInjection;
 using Restaurants.Application.Dishes.Dtos;
-using Restaurants.Application.Restaurants;
+using Restaurants.Application.Restaurants.Commands.CreateRestaurant;
 using Restaurants.Application.Restaurants.Dtos;
+
 
 namespace Restaurants.Application.Extention
 {
@@ -9,11 +12,17 @@ namespace Restaurants.Application.Extention
     {
         public static void AddApplication(this IServiceCollection services)
         {
-            services.AddScoped<IRestaurantsService, RestaurantsService>();
+            //automapper
             services.AddAutoMapper(
                typeof(RestaurantsProfile).Assembly,
                typeof(DishesProfile).Assembly
                );
+            //fluent validation
+            services.AddValidatorsFromAssembly(typeof(CreateRestaurantCommand).Assembly)
+                .AddFluentValidationAutoValidation();
+            //mediator
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(ServiseCollectionExtention).Assembly));
+
         }
     }
 }

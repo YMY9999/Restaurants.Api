@@ -6,6 +6,7 @@ namespace Restaurants.Domain.Repository
     {
         Task<IEnumerable<Restaurant>> GetAllRestaurantsAsync();
         Task<Restaurant> GetRestaurantByIDAsync(int id);
+        Task<int> CreateNewRestaurant(Restaurant restaurant);
 
     }
 }

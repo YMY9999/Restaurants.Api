@@ -1,18 +1,28 @@
 @Restaurants_HostAddress = https://localhost:7049
 
 
-GET {{Restaurants_HostAddress}}/api/weatherforecast/2/GetWeatherForecast?one=1
+GET {{Restaurants_HostAddress}}/api/Restaurants
+
 Accept: application/json
+
+
+###
+GET {{Restaurants_HostAddress}}/api/Restaurants/5
 
 ###
 
 @ResultCount=0
-POST {{Restaurants_HostAddress}}/api/weatherforecast/Generate?ResultCount=-1
+POST {{Restaurants_HostAddress}}/api/Restaurants
 Content-Type: application/json
 
 {
-  "min": -23,
-  "max": 23
+  "Name": "koke",
+  "Description": "koke foods",
+  "Category": "indian",
+  "HasDelivery": true,
+  "ContactEmail": "koke@gmail.com",
+  "ContactNumber": "01117660228",
+  "Street": "koke streat",
+  "City": "monofia",
+  "ZipCode": "77-111"
 }
-
-###
