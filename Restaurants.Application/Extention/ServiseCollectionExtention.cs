@@ -2,7 +2,6 @@
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 using Restaurants.Application.Dishes.Dtos;
-using Restaurants.Application.Restaurants.Commands.CreateRestaurant;
 using Restaurants.Application.Restaurants.Dtos;
 
 
@@ -18,8 +17,8 @@ namespace Restaurants.Application.Extention
                typeof(DishesProfile).Assembly
                );
             //fluent validation
-            services.AddValidatorsFromAssembly(typeof(CreateRestaurantCommand).Assembly)
-                .AddFluentValidationAutoValidation();
+            services.AddValidatorsFromAssembly(typeof(ServiseCollectionExtention).Assembly)
+               .AddFluentValidationAutoValidation();
             //mediator
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(ServiseCollectionExtention).Assembly));
 

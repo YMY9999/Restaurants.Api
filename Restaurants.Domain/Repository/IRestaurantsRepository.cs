@@ -9,6 +9,7 @@ namespace Restaurants.Domain.Repository
         Task<int> CreateNewRestaurant(Restaurant restaurant);
 
         Task DeleteRestaurant(Restaurant restaurant);
+        Task SaveChanges();
 
     }
 }

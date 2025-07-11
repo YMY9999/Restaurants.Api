@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Restaurants.Application.Restaurants.Commands.CreateRestaurant;
+using Restaurants.Application.Restaurants.Commands.UpdateRestaurant;
 using Restaurants.Domain.Entitys;
 
 namespace Restaurants.Application.Restaurants.Dtos
@@ -23,7 +24,7 @@ namespace Restaurants.Application.Restaurants.Dtos
                     ZipCode = src.ZipCode
                 }));
 
-
+            CreateMap<UpdateRestaurantCommand, Restaurant>();
         }
     }
 

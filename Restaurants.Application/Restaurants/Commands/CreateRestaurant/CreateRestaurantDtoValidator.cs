@@ -8,7 +8,7 @@ namespace Restaurants.Application.Restaurants.Commands.CreateRestaurant
         public CreateRestaurantCommandValidator()
         {
             RuleFor(dto => dto.Name)
-                .Length(1, 100);
+                .Length(3, 30);
 
 
             RuleFor(dto => dto.Category)
