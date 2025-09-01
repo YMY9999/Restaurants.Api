@@ -25,11 +25,6 @@ namespace Restaurants.Api.Controllers
         public async Task<IActionResult> GetRestaurantByID([FromRoute] int id)
         {
             var Restaurant = await mediator.Send(new GetRestaurantByIdQuery(id));
-
-            if (Restaurant == null)
-            {
-                return NotFound($"Restaurant with ID {id} not found.");
-            }
             return Ok(Restaurant);
         }
 
@@ -45,21 +40,17 @@ namespace Restaurants.Api.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRestaurant([FromRoute] int id)
         {
-            var IsDeleted = await mediator.Send(new DeleteRestaurantCommand(id));
-            if (IsDeleted)
-                return NoContent();
+            await mediator.Send(new DeleteRestaurantCommand(id));
+            return NoContent();
 
-            return NotFound($"Restaurant with ID {id} not found.");
         }
         [HttpPatch("{id}")]
         public async Task<IActionResult> UpdateRestaurant([FromRoute] int id, UpdateRestaurantCommand Command)
         {
             Command.Id = id;
-            var IsUpdated = await mediator.Send(Command);
-            if (IsUpdated)
-                return NoContent();
+            await mediator.Send(Command);
 
-            return NotFound($"Restaurant with ID {id} not found.");
+            return NoContent();
 
         }
 

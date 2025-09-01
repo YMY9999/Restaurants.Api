@@ -1,0 +1,13 @@
+﻿@Restaurants.Api_HostAddress = https://localhost:7049
+
+POST {{Restaurants.Api_HostAddress}}/api/restaurant/33/dishes
+Content-Type: application/json
+
+{
+       "Name":"pasta",
+       "Description": "very good pasta",
+       "price": 60,
+       "KiloCalories" : 150
+}
+
+###

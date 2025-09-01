@@ -1,6 +1,9 @@
+using Restaurants.Api.Middelewares;
 using Restaurants.Application.Extention;
 using Restaurants.Infrastructure.Extention;
 using Restaurants.Infrastructure.Seed;
+using Serilog;
+using Serilog.Events;
 
 namespace Restaurants
 {
@@ -18,8 +21,19 @@ namespace Restaurants
             builder.Services.AddSwaggerGen();
 
 
+            builder.Services.AddScoped<ErrorHandling>();
+            builder.Services.AddScoped<RequestTimeLogging>();
+
             builder.Services.AddInfrastructureServices(builder.Configuration);
             builder.Services.AddApplication();
+
+            builder.Host.UseSerilog((context, Configuration) =>
+
+            Configuration.MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+            .MinimumLevel.Override("Microsoft.EntityFrameworkCore", LogEventLevel.Information)
+            .WriteTo.Console(outputTemplate: "[{Timestamp:dd-MM HH:mm:ss} {Level:u3}] |{SourceContext}| {NewLine}{Message:lj}{NewLine}{Exception}")
+
+           );
 
             var app = builder.Build();
 
@@ -27,13 +41,16 @@ namespace Restaurants
             var seeder = scope.ServiceProvider.GetRequiredService<IRestaurantSeeder>();
             await seeder.Seed();
 
+            app.UseMiddleware<ErrorHandling>();
+            app.UseMiddleware<RequestTimeLogging>();
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            app.UseSerilogRequestLogging();
             app.UseHttpsRedirection();
 
             app.UseAuthorization();

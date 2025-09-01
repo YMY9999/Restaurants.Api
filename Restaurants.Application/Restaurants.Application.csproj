@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Dishes\Validation\" />
     <Folder Include="Restaurants\Validation\" />
   </ItemGroup>
 
